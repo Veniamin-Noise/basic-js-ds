@@ -21,23 +21,17 @@ class BinarySearchTree {
     if (!treebot) {
       treebot = new Node(data);
       this.treeRoot = treebot;
-      break
     }
-
-    if (treebot.data === data) {
+    else if (treebot.data === data) {
       this.treeRoot = treebot;
-      break
     }
-
-    if (treebot.data < data) {
+    else if (treebot.data < data) {
       treebot.right = addData(treebot.right, data);
     }
-
-    if (treebot.data > data) {
+    else if (treebot.data > data) {
       treebot.left = addData(treebot.left, data);
     }
     this.treeRoot = treebot;
-    break
   }
 
   has(data) {
