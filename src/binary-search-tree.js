@@ -8,24 +8,70 @@ const { NotImplementedError } = require('../extensions/index.js');
 */
 class BinarySearchTree {
 
+  Node() {
+    this.treeRoot = null;
+  }
+
   root() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    return this.treeRoot;
   }
 
-  add(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  add(data, treebot) {
+
+    if (!treebot) {
+      treebot = new Node(data);
+      this.treeRoot = treebot;
+      break
+    }
+
+    if (treebot.data === data) {
+      this.treeRoot = treebot;
+      break
+    }
+
+    if (treebot.data < data) {
+      treebot.right = addData(treebot.right, data);
+    }
+
+    if (treebot.data > data) {
+      treebot.left = addData(treebot.left, data);
+    }
+    this.treeRoot = treebot;
+    break
   }
 
-  has(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  has(data) {
+    Root = this.treeRoot;
+    if (!Root) {
+      return false;
+    }
+
+    if (Root.data == data) {
+      return true;
+    }
+
+    if (Root.data < data) {
+      return hasData(Root.right, data);
+    } else {
+      return hasData(Root.left, data);
+    }
   }
 
-  find(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  find(data) {
+    Root = this.treeRoot;
+    if (!Root) {
+      return null;
+    }
+
+    if (Root.data == data) {
+      return Root;
+    }
+
+    if (Root.data < data) {
+      return findNode(Root.right, data);
+    } else {
+      return findNode(Root.left, data);
+    }
   }
 
   remove(/* data */) {
@@ -33,14 +79,20 @@ class BinarySearchTree {
     // remove line with error and write your code here
   }
 
-  min() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  min(Root = this.treeRoot) {
+    if (!Root) return null;
+    while (Root.left) {
+      Root = Root.left;
+    }
+    return Root.data;
   }
 
-  max() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  max(Root = this.treeRoot) {
+    if (!Root) return null;
+    while (Root.right) {
+      Root = Root.right;
+    }
+    return Root.data;
   }
 }
 
